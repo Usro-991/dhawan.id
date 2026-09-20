@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tentang Dhawan Coffee</title>
+<meta name="description" content="Dhawan Coffee - kopi premium, tempat nyaman. Lihat menu, lokasi, dan jam buka.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6B4226;--p2:#3E2419;--cream:#FAF6F1;--muted:#7A6B62;--gold:#DDB878}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--cream);color:#2B211C}
+.wrap{max-width:520px;margin:0 auto}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;padding:38px 24px 32px;
+ border-radius:0 0 30px 30px;text-align:center}
+.logo{width:72px;height:72px;border-radius:22px;background:rgba(255,255,255,.14);
+ font-size:32px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.hero h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.3px}
+.hero .tag{margin:8px 0 0;opacity:.85;font-size:13.5px}
+.rule{width:64px;height:4px;border-radius:2px;background:var(--gold);margin:16px auto 0}
+.sec{padding:0 20px}
+.card{background:#fff;border-radius:20px;padding:16px 18px;margin-top:14px;
+ box-shadow:0 2px 10px rgba(60,40,20,.06)}
+.row{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #F0E8E0}
+.row:last-child{border-bottom:0}
+.ic{width:38px;height:38px;flex:0 0 38px;border-radius:12px;background:#F5EDE4;color:var(--p);
+ display:flex;align-items:center;justify-content:center;font-size:18px}
+.k{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.3px;text-transform:uppercase}
+.v{font-size:14.5px;font-weight:600;line-height:1.4;margin-top:2px}
+h2{font-size:15px;margin:26px 0 0;padding-left:4px}
+.btn{display:block;text-align:center;text-decoration:none;border-radius:16px;padding:15px;
+ font-weight:700;font-size:15.5px;margin-top:12px}
+.b1{background:var(--p);color:#fff}
+.b2{background:#25D366;color:#fff}
+.b3{background:#fff;color:var(--p);border:1.5px solid #E6DDD4}
+.perk{display:flex;gap:10px;padding:9px 0;font-size:13.5px;line-height:1.45;border-bottom:1px solid #F0E8E0}
+.perk:last-child{border-bottom:0}
+.perk span{color:var(--gold);font-size:15px}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:30px 20px 34px}
+.foot b{color:var(--p)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="logo">D</div>
+    <h1 id="store">Dhawan Coffee</h1>
+    <p class="tag">Kopi premium, tempat nyaman</p>
+    <div class="rule"></div>
+  </div>
+
+  <div class="sec">
+    <div class="card">
+      <div class="row">
+        <div class="ic">&#128205;</div>
+        <div><div class="k">Alamat</div><div class="v" id="addr">Jl. Pajagalan, Kp Sindangsari</div></div>
+      </div>
+      <div class="row">
+        <div class="ic">&#128336;</div>
+        <div><div class="k">Jam buka</div><div class="v" id="hours">08.00 - 22.00</div></div>
+      </div>
+      <div class="row">
+        <div class="ic">&#128241;</div>
+        <div><div class="k">WhatsApp</div><div class="v" id="phone">087778199518</div></div>
+      </div>
+    </div>
+
+    <a class="btn b1" href="https://dhawan.my.id">&#9749; Lihat Menu &amp; Pesan</a>
+    <a class="btn b2" href="https://dhawan.my.id/wa">&#128172; Chat WhatsApp</a>
+    <a class="btn b3" id="maps" target="_blank" rel="noopener">&#128506; Buka di Google Maps</a>
+
+    <h2>Keuntungan jadi member</h2>
+    <div class="card" id="perks">
+      <div class="perk"><span>&#10022;</span><div>Memuat...</div></div>
+    </div>
+    <a class="btn b3" href="https://dhawan.my.id">Daftar member gratis</a>
+
+    <h2>Cek poin member</h2>
+    <div class="card">
+      <div style="font-size:13.5px;color:var(--muted);line-height:1.5">
+        Sudah jadi member? Lihat sisa poin dan jumlah kunjunganmu.
+      </div>
+      <a class="btn b3" href="https://dhawan.my.id/poin" style="margin-top:10px">&#11088; Cek poin saya</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>dhawan.my.id</b><br>Terima kasih sudah mampir &#9749;
+  </div>
+</div>
+
+<script>
+var API = "https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
+var _c = 0;
+function jsonp(params, ok, err){
+  var cb = "__jp" + (++_c) + "_" + Date.now();
+  var s = document.createElement("script");
+  var t = setTimeout(function(){ done(); if(err) err("timeout"); }, 15000);
+  function done(){ clearTimeout(t); delete window[cb]; if(s.parentNode) s.parentNode.removeChild(s); }
+  window[cb] = function(r){ done(); if(ok) ok(r); };
+  s.onerror = function(){ done(); if(err) err("network"); };
+  s.src = API + "?" + params + "&callback=" + cb;
+  document.body.appendChild(s);
+}
+function esc(t){ var d=document.createElement("div"); d.textContent=t; return d.innerHTML; }
+function setMaps(){
+  var q = (document.getElementById("store").textContent + " " + document.getElementById("addr").textContent);
+  document.getElementById("maps").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+}
+setMaps();
+jsonp("info=1", function(d){
+  if(!d) return;
+  if(d.store){ document.getElementById("store").textContent = d.store; document.title = "Tentang " + d.store; }
+  if(d.address) document.getElementById("addr").textContent = d.address;
+  if(d.hours) document.getElementById("hours").textContent = d.hours;
+  if(d.phone) document.getElementById("phone").textContent = d.phone;
+  setMaps();
+  var el = document.getElementById("perks");
+  var list = (d.perks && d.perks.length) ? d.perks : ["Diskon khusus member tiap transaksi","Hadiah ulang tahun","Harga spesial untuk acara"];
+  el.innerHTML = list.map(function(p){ return "<div class='perk'><span>&#10022;</span><div>" + esc(p) + "</div></div>"; }).join("");
+}, function(){
+  document.getElementById("perks").innerHTML = "<div class='perk'><span>&#10022;</span><div>Diskon khusus member tiap transaksi</div></div><div class='perk'><span>&#10022;</span><div>Hadiah ulang tahun</div></div>";
+});
+</script>
+</body>
+</html>

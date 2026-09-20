@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rzq Kasir - Kasir yang tahu untungmu</title>
+<meta name="description" content="Aplikasi kasir Android untuk warung sembako, rumah makan, kedai kopi, dan toko apa pun. Tahu untung asli tiap barang, stok berkurang otomatis, laporan siap pakai. Jalan tanpa internet.">
+<meta property="og:title" content="Rzq Kasir - Kasir yang tahu untungmu">
+<meta property="og:description" content="Bukan cuma mencatat penjualan. Tahu untung asli tiap barang, stok otomatis, laporan siap pakai. Untuk usaha apa saja.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --p:#6B4226; --p2:#3E2419; --cream:#FAF6F1; --ink:#2B211C;
+  --muted:#7A6B62; --gold:#DDB878; --ok:#2E7D4F; --line:#E9E0D6;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--cream);
+ color:var(--ink);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.narrow{max-width:700px;margin:0 auto}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+.rv.force{opacity:1 !important;transform:none !important;transition:none !important}
+
+.hero{background:linear-gradient(160deg,#2C1A12,var(--p2) 45%,var(--p));color:#fff;
+ padding:72px 0 78px;text-align:center;border-radius:0 0 40px 40px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -20% -60% -20%;height:260px;
+ background:radial-gradient(ellipse at center,rgba(221,184,120,.22),transparent 70%)}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+ border-radius:999px;padding:7px 16px;font-size:11.5px;font-weight:700;letter-spacing:1px}
+h1{margin:20px 0 0;font-size:clamp(32px,7vw,54px);font-weight:800;letter-spacing:-1.2px;line-height:1.08}
+h1 em{font-style:normal;color:var(--gold)}
+.hero p{margin:18px auto 0;max-width:540px;font-size:clamp(15px,2.2vw,17.5px);line-height:1.6;opacity:.88}
+.hbtns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;border-radius:14px;padding:14px 26px;
+ font-weight:700;font-size:15px;transition:transform .15s ease}
+.btn:active{transform:scale(.97)}
+.b1{background:#25D366;color:#fff}
+.b2{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.hnote{margin-top:18px;font-size:12.5px;opacity:.6}
+
+section{padding:74px 0}
+.label{font-size:11.5px;font-weight:800;letter-spacing:1.4px;color:var(--p);
+ text-transform:uppercase;margin:0 0 12px}
+h2{font-size:clamp(25px,4.4vw,38px);font-weight:800;letter-spacing:-.8px;line-height:1.16;margin:0}
+.lead{color:var(--muted);font-size:clamp(14.5px,2vw,16.5px);line-height:1.65;margin:16px 0 0}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto;max-width:620px}
+
+/* jenis usaha */
+.biz{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.biz span{background:#fff;border:1px solid var(--line);border-radius:999px;
+ padding:11px 18px;font-size:13.5px;font-weight:600}
+.biz span i{font-style:normal;margin-right:7px}
+
+.probs{display:grid;grid-template-columns:1fr;gap:14px;margin-top:38px}
+@media(min-width:680px){.probs{grid-template-columns:1fr 1fr}}
+.prob{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.prob .q{font-size:15.5px;font-weight:700;line-height:1.45;margin:0 0 10px;
+ display:flex;gap:10px;align-items:flex-start}
+.prob .q i{font-style:normal;color:#C4453A;font-size:17px;line-height:1.2}
+.prob .a{font-size:13.5px;color:var(--muted);line-height:1.6;margin:0;padding-left:27px;
+ border-left:2px solid var(--gold);margin-left:4px}
+
+.feat{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
+@media(min-width:820px){.feat{grid-template-columns:1fr 1fr;gap:56px}.feat.rev .txt{order:2}}
+.feat + .feat{margin-top:82px}
+.feat h3{font-size:clamp(21px,3vw,28px);font-weight:800;letter-spacing:-.5px;margin:0;line-height:1.2}
+.feat p{color:var(--muted);font-size:14.8px;line-height:1.7;margin:14px 0 0}
+.mini{margin-top:18px;padding-left:0;list-style:none}
+.mini li{font-size:13.8px;line-height:1.55;padding:7px 0 7px 26px;position:relative;color:var(--ink)}
+.mini li::before{content:"\2713";position:absolute;left:0;color:var(--ok);font-weight:800}
+
+.vis{background:#fff;border:1px solid var(--line);border-radius:26px;padding:24px;
+ box-shadow:0 10px 34px rgba(60,40,20,.07)}
+.vtitle{font-size:11px;font-weight:800;letter-spacing:.9px;color:var(--muted);
+ text-transform:uppercase;margin:0 0 16px}
+.bar{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;
+ padding:11px 0;border-bottom:1px solid #F2EBE3;gap:10px}
+.bar:last-child{border-bottom:0}
+.bar b{font-weight:700;white-space:nowrap}
+.bar .neg{color:#C4453A}
+.bar .pos{color:var(--ok);font-weight:800;font-size:17px}
+.meter{height:9px;border-radius:5px;background:#F0E7DD;overflow:hidden;margin-top:9px}
+.meter i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--p),var(--gold))}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{flex:1;border:1px solid var(--line);background:#FBF7F2;border-radius:12px;
+ padding:9px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;color:var(--muted)}
+.tabs button.on{background:var(--p);color:#fff;border-color:var(--p)}
+.stock{font-size:13px;padding:12px 0;border-bottom:1px solid #F2EBE3}
+.stock:last-child{border-bottom:0}
+.stock .r{display:flex;justify-content:space-between;font-weight:600}
+.stock .r span{color:var(--muted);font-weight:500;font-size:12px}
+.chart{display:flex;align-items:flex-end;gap:9px;height:132px;margin-top:6px}
+.chart div{flex:1;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--p),#8A5A36)}
+.chart div:last-child{background:linear-gradient(180deg,var(--gold),#C9A063)}
+.days{display:flex;gap:9px;margin-top:9px}
+.days span{flex:1;text-align:center;font-size:10.5px;color:var(--muted);font-weight:600}
+.phone{background:#1A1210;border-radius:30px;padding:9px;box-shadow:0 14px 40px rgba(60,40,20,.2)}
+.phone img{border-radius:22px}
+.flow{display:flex;flex-direction:column;gap:11px}
+.step{display:flex;gap:13px;align-items:center;background:#FBF7F2;border-radius:15px;padding:13px 15px}
+.step b{width:27px;height:27px;flex:0 0 27px;border-radius:9px;background:var(--p);color:#fff;
+ font-size:13px;display:flex;align-items:center;justify-content:center}
+.step span{font-size:13.3px;line-height:1.45}
+.offline{text-align:center;padding:12px 0 4px}
+.offline .big{font-size:46px;line-height:1}
+.offline .t{font-weight:800;margin-top:12px;font-size:16px}
+.offline .s{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.55}
+
+.nums{background:linear-gradient(160deg,var(--p2),var(--p));color:#fff;border-radius:30px;
+ padding:44px 26px;display:grid;grid-template-columns:1fr 1fr;gap:30px 16px;text-align:center}
+@media(min-width:760px){.nums{grid-template-columns:repeat(4,1fr)}}
+.nums b{display:block;font-size:clamp(26px,5vw,36px);font-weight:800;letter-spacing:-1px;color:var(--gold)}
+.nums span{display:block;font-size:12.5px;opacity:.8;margin-top:7px;line-height:1.45}
+
+.cmp{width:100%;border-collapse:collapse;margin-top:34px;font-size:13.5px;
+ background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.cmp th,.cmp td{padding:13px 12px;text-align:left;border-bottom:1px solid #F2EBE3}
+.cmp th{background:#F8F2EB;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.cmp th:last-child{color:var(--p)}
+.cmp td:first-child{font-weight:600}
+.cmp tr:last-child td{border-bottom:0}
+.yes{color:var(--ok);font-weight:800}
+.no{color:#C4453A;font-weight:700}
+
+details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 18px;margin-bottom:11px}
+summary{cursor:pointer;list-style:none;padding:17px 0;font-weight:700;font-size:14.5px;
+ display:flex;justify-content:space-between;gap:14px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--p);font-size:20px;font-weight:700;flex:0 0 auto}
+details[open] summary::after{content:"\2212"}
+details p{margin:0 0 17px;color:var(--muted);font-size:13.8px;line-height:1.65}
+
+.cta{background:linear-gradient(160deg,#2C1A12,var(--p2) 50%,var(--p));color:#fff;
+ border-radius:34px;padding:56px 26px;text-align:center}
+.cta h2{color:#fff}
+.cta p{opacity:.85;font-size:15px;line-height:1.6;margin:16px auto 0;max-width:470px}
+.foot{text-align:center;color:var(--muted);font-size:12.5px;padding:44px 20px 50px;line-height:1.75}
+.foot b{color:var(--p)}
+.foot a{color:var(--p);text-decoration:none}
+.shots{display:flex;gap:18px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
+.shots::-webkit-scrollbar{display:none}
+.shots .it{flex:0 0 auto;width:238px}
+.shots .it p{text-align:center;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:12px}
+</style>
+<noscript><style>.rv{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">APLIKASI KASIR ANDROID</span>
+    <h1>Kasir yang tahu<br><em>untungmu.</em></h1>
+    <p>Kebanyakan aplikasi kasir cuma mencatat uang masuk.
+       Rzq Kasir menghitung modal tiap barang, memotong stok sendiri,
+       dan menyiapkan laporan yang langsung bisa dipakai mengambil keputusan.</p>
+    <div class="hbtns">
+      <a class="btn b1" id="wa1" href="#">Tanya lewat WhatsApp</a>
+      <a class="btn b2" href="#masalah">Lihat apa yang dikerjakan</a>
+    </div>
+    <div class="hnote">Dipakai setiap hari di usaha sendiri &middot; bukan aplikasi contoh</div>
+  </div>
+</div>
+
+<section style="padding-bottom:20px">
+  <div class="wrap">
+    <div class="narrow center rv">
+      <p class="label">Untuk usaha apa saja</p>
+      <h2>Bukan cuma untuk satu jenis usaha</h2>
+      <p class="lead">Nama menu, satuan, kategori, dan cara hitung modal semuanya bisa kamu atur sendiri.
+         Mau jual barang jadi atau barang racikan, dua-duanya bisa.</p>
+      <div class="biz">
+        <span><i>&#128722;</i>Warung sembako</span>
+        <span><i>&#9749;</i>Kedai kopi</span>
+        <span><i>&#127858;</i>Rumah makan</span>
+        <span><i>&#127857;</i>Katering</span>
+        <span><i>&#128717;</i>Toko kelontong</span>
+        <span><i>&#129529;</i>Laundry</span>
+        <span><i>&#128135;</i>Barbershop &amp; salon</span>
+        <span><i>&#128717;</i>Toko baju</span>
+        <span><i>&#127838;</i>Toko roti</span>
+        <span><i>&#128295;</i>Toko bangunan</span>
+        <span><i>&#127871;</i>Toko kue</span>
+        <span><i>&#128230;</i>Jasa &amp; lainnya</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="masalah" style="padding-top:44px">
+  <div class="wrap">
+    <div class="narrow center rv">
+      <p class="label">Kenapa ini dibuat</p>
+      <h2>Enam hal yang bikin pemilik usaha pusing</h2>
+      <p class="lead">Aplikasi ini lahir dari masalah nyata sebuah usaha kecil,
+         bukan dari daftar fitur yang dikarang di ruang rapat.</p>
+    </div>
+    <div class="probs rv">
+      <div class="prob">
+        <p class="q"><i>&#10007;</i>"Jualan ramai, tapi kenapa uangnya tipis?"</p>
+        <p class="a">Karena omzet bukan untung. Tanpa tahu modal tiap barang,
+           produk paling laris bisa jadi yang paling merugikan.</p>
+      </div>
+      <div class="prob">
+        <p class="q"><i>&#10007;</i>"Stok habis, padahal catatan bilang masih ada."</p>
+        <p class="a">Karena stok dicatat manual sementara penjualan jalan terus.
+           Selisihnya baru ketahuan saat barang benar-benar kosong.</p>
+      </div>
+      <div class="prob">
+        <p class="q"><i>&#10007;</i>"Sinyal mati, kasir ikut mati."</p>
+        <p class="a">Aplikasi kasir berbasis internet berhenti total saat jaringan putus.
+           Antrean menumpuk, transaksi terpaksa dicatat di kertas.</p>
+      </div>
+      <div class="prob">
+        <p class="q"><i>&#10007;</i>"Tutup buku tiap malam bikin capek."</p>
+        <p class="a">Menghitung omzet, modal, dan sisa uang satu per satu
+           memakan waktu, dan gampang salah kalau sedang lelah.</p>
+      </div>
+      <div class="prob">
+        <p class="q"><i>&#10007;</i>"Datanya disimpan di server siapa?"</p>
+        <p class="a">Banyak aplikasi menyimpan data penjualanmu di server mereka.
+           Berhenti berlangganan, datamu ikut terkunci.</p>
+      </div>
+      <div class="prob">
+        <p class="q"><i>&#10007;</i>"Bayar tiap bulan, selamanya."</p>
+        <p class="a">Biaya langganan tetap jalan walau usaha sedang sepi.
+           Setahun bisa lebih mahal daripada aplikasinya sendiri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:12px">
+  <div class="wrap">
+
+    <div class="feat rv">
+      <div class="txt">
+        <p class="label">Untung asli</p>
+        <h3>Tahu persis untung tiap barang</h3>
+        <p>Untuk barang yang dibeli jadi, cukup isi harga beli.
+           Untuk barang racikan, isi bahan dan takarannya sekali saja.
+           Aplikasi menghitung modal tiap produk, lalu menunjukkan untung sebenarnya
+           di setiap transaksi dan laporan.</p>
+        <ul class="mini">
+          <li>Modal dihitung sendiri, bukan tebakan</li>
+          <li>Harga bahan naik, modal ikut menyesuaikan</li>
+          <li>Ketahuan produk mana yang untungnya tipis</li>
+        </ul>
+      </div>
+      <div class="vis">
+        <div class="tabs">
+          <button class="on" id="tb1" onclick="tab(1)">Barang jadi</button>
+          <button id="tb2" onclick="tab(2)">Barang racikan</button>
+        </div>
+        <div id="pane1">
+          <p class="vtitle">Contoh: warung sembako</p>
+          <div class="bar"><span>Minyak goreng 1 L &mdash; harga jual</span><b>Rp18.000</b></div>
+          <div class="bar"><span>Harga beli dari agen</span><b class="neg">&minus; Rp15.500</b></div>
+          <div class="bar"><span>Untung per botol</span><b class="pos">Rp2.500</b></div>
+          <div class="meter"><i style="width:14%"></i></div>
+          <p style="font-size:11.5px;color:var(--muted);margin:10px 0 0">Margin 14% &middot; angka contoh</p>
+        </div>
+        <div id="pane2" style="display:none">
+          <p class="vtitle">Contoh: rumah makan / kedai</p>
+          <div class="bar"><span>Nasi goreng &mdash; harga jual</span><b>Rp18.000</b></div>
+          <div class="bar"><span>Beras, telur, bumbu, gas</span><b class="neg">&minus; Rp7.000</b></div>
+          <div class="bar"><span>Untung per porsi</span><b class="pos">Rp11.000</b></div>
+          <div class="meter"><i style="width:61%"></i></div>
+          <p style="font-size:11.5px;color:var(--muted);margin:10px 0 0">Margin 61% &middot; angka contoh</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rev rv">
+      <div class="txt">
+        <p class="label">Stok otomatis</p>
+        <h3>Stok berkurang sendiri tiap ada penjualan</h3>
+        <p>Begitu barang terjual, stoknya langsung dipotong.
+           Untuk barang racikan, bahannya yang berkurang sesuai takaran.
+           Tidak ada lagi catatan terpisah yang harus dicocokkan tiap malam.</p>
+        <ul class="mini">
+          <li>Peringatan saat stok menipis</li>
+          <li>Stok opname untuk mencocokkan barang fisik</li>
+          <li>Riwayat barang masuk dan keluar tersimpan</li>
+        </ul>
+      </div>
+      <div class="vis">
+        <p class="vtitle">Setelah beberapa penjualan</p>
+        <div class="stock">
+          <div class="r"><span>Beras (kg)</span>48 kg</div>
+          <div class="meter"><i style="width:80%"></i></div>
+        </div>
+        <div class="stock">
+          <div class="r"><span>Minyak goreng (botol)</span>23 botol</div>
+          <div class="meter"><i style="width:57%"></i></div>
+        </div>
+        <div class="stock">
+          <div class="r"><span>Gula pasir <span style="color:#C4453A">menipis</span></span>3 kg</div>
+          <div class="meter"><i style="width:11%"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rv">
+      <div class="txt">
+        <p class="label">Katalog online</p>
+        <h3>Pelanggan lihat katalog dan pesan sendiri</h3>
+        <p>Aplikasi membuatkan halaman katalog online berisi foto, harga, dan keterangan barangmu,
+           lengkap dengan kode QR dan tautan yang bisa ditempel di bio Instagram atau dibagikan ke grup WhatsApp.
+           Pesanan yang masuk langsung muncul di kasir.</p>
+        <ul class="mini">
+          <li>Pelanggan tidak perlu memasang aplikasi apa pun</li>
+          <li>Bisa untuk pesan di tempat, bungkus, atau antar</li>
+          <li>Kasir bisa terima, tahan, atau tolak pesanan</li>
+        </ul>
+      </div>
+      <div class="vis">
+        <p class="vtitle">Alurnya</p>
+        <div class="flow">
+          <div class="step"><b>1</b><span>Pelanggan buka tautan atau pindai kode QR</span></div>
+          <div class="step"><b>2</b><span>Lihat katalog beserta foto dan harga</span></div>
+          <div class="step"><b>3</b><span>Kirim pesanan, pilih cara bayar</span></div>
+          <div class="step"><b>4</b><span>Pemberitahuan berbunyi di kasir</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rev rv">
+      <div class="txt">
+        <p class="label">Tetap hidup</p>
+        <h3>Sinyal mati, jualan tetap jalan</h3>
+        <p>Semua data disimpan di dalam HP, bukan di internet.
+           Listrik padam, wifi putus, kuota habis &mdash; kasir tetap melayani.
+           Saat jaringan kembali, data disalin sendiri ke Google Sheets milikmu.</p>
+        <ul class="mini">
+          <li>Transaksi tidak pernah tertahan jaringan</li>
+          <li>Data tersimpan di akun Google milikmu sendiri</li>
+          <li>Cadangan data bisa diambil kapan saja</li>
+        </ul>
+      </div>
+      <div class="vis">
+        <div class="offline">
+          <div class="big">&#128246;</div>
+          <div class="t">Tanpa internet? Tetap jalan.</div>
+          <div class="s">Kasir, struk, stok, dan laporan bekerja penuh
+             walau sinyal hilang seharian.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rv">
+      <div class="txt">
+        <p class="label">Laporan</p>
+        <h3>Angka yang bisa langsung dipakai</h3>
+        <p>Harian, mingguan, bulanan, sampai rentang tanggal yang kamu tentukan sendiri.
+           Omzet, modal, untung kotor, biaya operasional, untung bersih,
+           barang terlaris, sampai jam paling ramai.</p>
+        <ul class="mini">
+          <li>Ekspor ke Excel atau PDF</li>
+          <li>Kirim langsung lewat WhatsApp</li>
+          <li>Laporan otomatis dikirim ke Telegram</li>
+        </ul>
+      </div>
+      <div class="vis">
+        <p class="vtitle">Omzet 7 hari terakhir</p>
+        <div class="chart">
+          <div style="height:46%"></div><div style="height:62%"></div><div style="height:38%"></div>
+          <div style="height:71%"></div><div style="height:55%"></div><div style="height:88%"></div>
+          <div style="height:100%"></div>
+        </div>
+        <div class="days"><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span>
+          <span>Jum</span><span>Sab</span><span>Min</span></div>
+        <p style="font-size:11.5px;color:var(--muted);margin:12px 0 0">Angka contoh</p>
+      </div>
+    </div>
+
+    <div class="feat rev rv">
+      <div class="txt">
+        <p class="label">Pelanggan kembali</p>
+        <h3>Member, poin, dan promo yang kamu atur sendiri</h3>
+        <p>Pelanggan terdaftar beserta nomor WhatsApp-nya, dan tiap belanja mengumpulkan poin.
+           Poin itu bisa ditukar jadi potongan di kasir &mdash; berapa poin dan berapa potongannya,
+           kamu yang tentukan. Aturan promo juga kamu tulis sendiri.</p>
+        <ul class="mini">
+          <li>Poin terkumpul otomatis tiap transaksi</li>
+          <li>Tukar poin jadi potongan langsung di kasir</li>
+          <li>Promo bisa dibatasi minimal belanja, jam, atau khusus member</li>
+          <li>Hubungi pelanggan lewat WhatsApp dari dalam aplikasi</li>
+        </ul>
+      </div>
+      <div class="vis">
+        <p class="vtitle">Contoh aturan yang kamu atur</p>
+        <div class="bar"><span>Belanja per 1 poin</span><b>Rp10.000</b></div>
+        <div class="bar"><span>Poin ditukar sekali klaim</span><b>20 poin</b></div>
+        <div class="bar"><span>Potongan per klaim</span><b class="pos">Rp5.000</b></div>
+        <div class="bar"><span>Promo khusus member</span><b class="yes">Ya</b></div>
+        <div class="bar"><span>Jam berlaku promo</span><b>14.00 &ndash; 17.00</b></div>
+        <p style="font-size:11.5px;color:var(--muted);margin:12px 0 0">Semua kolom bisa kamu ubah sendiri</p>
+      </div>
+    </div>
+
+    <div class="feat rv">
+      <div class="txt">
+        <p class="label">Lebih dari kasir</p>
+        <h3>Sekalian mengurus hal lain di usahamu</h3>
+        <p>Selain menjual, aplikasi ini juga menyimpan catatan yang biasanya
+           tercecer di buku atau di kepala.</p>
+        <ul class="mini">
+          <li><b>Aset &amp; modal</b> &mdash; kode aset, nilai, penyusutan, jadwal servis</li>
+          <li><b>Piutang</b> &mdash; catatan bon pelanggan dan pelunasannya</li>
+          <li><b>Biaya operasional</b> &mdash; listrik, gaji, sewa, masuk ke laba rugi</li>
+          <li><b>Shift kasir</b> &mdash; buka dan tutup kas, siapa yang bertugas</li>
+          <li><b>Banyak pengguna</b> &mdash; pemilik dan kasir punya PIN sendiri</li>
+          <li><b>Banyak cabang</b> &mdash; data per outlet</li>
+        </ul>
+      </div>
+      <div>
+        <div class="phone" style="max-width:260px;margin:0 auto">
+          <img src="app-master.jpg" alt="Daftar menu pengaturan data di aplikasi" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="narrow center rv" style="margin-bottom:38px">
+      <p class="label">Tampilan aplikasi</p>
+      <h2>Begini wujudnya</h2>
+    </div>
+    <div class="rv">
+      <div class="shots">
+        <div class="it"><div class="phone"><img src="app-kasir.jpg" alt="Layar kasir" loading="lazy"></div>
+          <p>Layar kasir</p></div>
+        <div class="it"><div class="phone"><img src="app-master.jpg" alt="Pengaturan data" loading="lazy"></div>
+          <p>Pengaturan data</p></div>
+        <div class="it"><div class="phone"><img src="app-qr.jpg" alt="Kode QR katalog" loading="lazy"></div>
+          <p>Katalog &amp; kode QR</p></div>
+        <div class="it"><div class="phone"><img src="app-promo.jpg" alt="Aturan promo" loading="lazy"></div>
+          <p>Aturan promo</p></div>
+        <div class="it"><div class="phone"><img src="app-web.jpg" alt="Halaman katalog pelanggan" loading="lazy"></div>
+          <p>Yang dilihat pelanggan</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:12px">
+  <div class="wrap">
+    <div class="nums rv">
+      <div><b>Rp0</b><span>biaya bulanan<br>bayar sekali</span></div>
+      <div><b>100%</b><span>jalan tanpa<br>internet</span></div>
+      <div><b>Milikmu</b><span>data di akun<br>Google sendiri</span></div>
+      <div><b>25</b><span>uji otomatis<br>tiap pembaruan</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="narrow center rv">
+      <p class="label">Perbandingan</p>
+      <h2>Dibanding cara lain</h2>
+    </div>
+    <div class="rv" style="overflow-x:auto">
+      <table class="cmp">
+        <tr><th>&nbsp;</th><th>Buku tulis</th><th>Kasir langganan</th><th>Rzq Kasir</th></tr>
+        <tr><td>Biaya bulanan</td><td class="yes">Rp0</td><td class="no">Terus jalan</td><td class="yes">Rp0</td></tr>
+        <tr><td>Tahu untung tiap barang</td><td class="no">Hitung manual</td><td>Sebagian</td><td class="yes">Otomatis</td></tr>
+        <tr><td>Stok berkurang sendiri</td><td class="no">Tidak</td><td>Sebagian</td><td class="yes">Ya</td></tr>
+        <tr><td>Saat internet mati</td><td class="yes">Aman</td><td class="no">Berhenti</td><td class="yes">Tetap jalan</td></tr>
+        <tr><td>Katalog &amp; pesanan online</td><td class="no">Tidak</td><td>Biaya tambahan</td><td class="yes">Termasuk</td></tr>
+        <tr><td>Data disimpan di</td><td>Kertas</td><td class="no">Server mereka</td><td class="yes">Akun Google-mu</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:12px">
+  <div class="wrap narrow">
+    <div class="center rv">
+      <p class="label">Pertanyaan</p>
+      <h2>Yang sering ditanya</h2>
+    </div>
+    <div class="rv" style="margin-top:34px">
+      <details><summary>Saya jualan sembako, bukan makanan. Cocok?</summary>
+        <p>Cocok. Nama kategori, satuan (kg, liter, pcs, botol), dan cara hitung modal
+           semuanya bisa kamu atur. Untuk barang yang dibeli jadi, cukup isi harga beli dan harga jual.</p></details>
+      <details><summary>Barang saya banyak sekali, apakah muat?</summary>
+        <p>Muat. Daftar barang bisa dicari dan dikelompokkan per kategori.
+           Kalau sudah punya daftar barang di aplikasi lain, bisa dipindahkan lewat file CSV
+           supaya tidak mengetik ulang.</p></details>
+      <details><summary>HP seperti apa yang dibutuhkan?</summary>
+        <p>HP Android biasa sudah cukup. Tidak perlu spesifikasi tinggi,
+           tidak perlu membeli mesin kasir khusus.</p></details>
+      <details><summary>Kalau saya ganti HP, data ikut pindah?</summary>
+        <p>Ikut. Data bisa dicadangkan lalu dipulihkan di HP baru.
+           Kalau penyalinan ke Google Sheets aktif, data utama juga bisa ditarik kembali.</p></details>
+      <details><summary>Harus paham komputer?</summary>
+        <p>Tidak. Pemasangan dibantu sampai jalan, termasuk memasukkan daftar barang.
+           Setelah itu pemakaian hariannya sederhana.</p></details>
+      <details><summary>Bisa cetak struk?</summary>
+        <p>Bisa, lewat printer Bluetooth. Struk juga bisa dikirim sebagai gambar
+           atau PDF lewat WhatsApp kalau tidak ingin memakai kertas.</p></details>
+      <details><summary>Butuh internet untuk apa saja?</summary>
+        <p>Hanya untuk menyalin data ke Google Sheets dan untuk halaman katalog pelanggan.
+           Kasir, stok, struk, dan laporan bekerja sepenuhnya tanpa internet.</p></details>
+      <details><summary>Bisa dipakai lebih dari satu orang?</summary>
+        <p>Bisa. Pemilik dan kasir punya PIN masing-masing, dengan hak akses berbeda.
+           Laporan dan data utama hanya bisa dibuka pemilik.</p></details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:12px">
+  <div class="wrap">
+    <div class="cta rv">
+      <h2>Mau coba di usahamu?</h2>
+      <p>Ceritakan jenis usahamu dan berapa banyak barang yang kamu jual.
+         Saya bantu siapkan sampai benar-benar siap dipakai.</p>
+      <div class="hbtns">
+        <a class="btn b1" id="wa2" href="#">Tanya lewat WhatsApp</a>
+        <a class="btn b2" href="https://dhawan.my.id">Lihat contoh katalognya</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  Dikembangkan dan dipakai sendiri setiap hari.<br>
+  <a href="https://dhawan.my.id">dhawan.my.id</a> &middot;
+  <a href="https://dhawan.my.id/tentang">tentang kami</a>
+</div>
+
+<script>
+/* GANTI NOMOR DI SINI kalau perlu. Format 62..., tanpa + dan tanpa 0 di depan. */
+var WA = "6287778199518";
+var pesan = "Halo, saya tertarik dengan aplikasi Rzq Kasir. Boleh minta penjelasannya?";
+var href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(pesan);
+document.getElementById("wa1").href = href;
+document.getElementById("wa2").href = href;
+
+/* Contoh hitung modal: barang jadi vs barang racikan */
+function tab(n){
+  document.getElementById("pane1").style.display = n === 1 ? "" : "none";
+  document.getElementById("pane2").style.display = n === 2 ? "" : "none";
+  document.getElementById("tb1").className = n === 1 ? "on" : "";
+  document.getElementById("tb2").className = n === 2 ? "on" : "";
+}
+
+/* Muncul perlahan saat digulir.
+   Animasi ini hanya hiasan, jadi ada beberapa lapis pengaman
+   supaya isi halaman tidak mungkin tersembunyi. */
+(function(){
+  var els = [].slice.call(document.querySelectorAll(".rv"));
+  function show(el){ el.classList.add("on"); }
+  var ticking = false;
+  function check(){
+    ticking = false;
+    var h = window.innerHeight || document.documentElement.clientHeight;
+    for (var i = els.length - 1; i >= 0; i--) {
+      var r = els[i].getBoundingClientRect();
+      if (r.top < h - 40 && r.bottom > 0) { show(els[i]); els.splice(i, 1); }
+    }
+  }
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    (window.requestAnimationFrame || function(f){ setTimeout(f, 16); })(check);
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll, {passive:true});
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+    }, {rootMargin:"0px 0px -60px 0px", threshold:0.08});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(show);
+  }
+  check();
+  setTimeout(function(){
+    var all = document.querySelectorAll(".rv");
+    for (var k = 0; k < all.length; k++) { all[k].classList.add("on"); all[k].classList.add("force"); }
+  }, 6000);
+})();
+</script>
+</body>
+</html>

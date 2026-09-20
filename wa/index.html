@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat WhatsApp - Dhawan Coffee</title>
+<!-- ================================================================
+     GANTI NOMOR DI SINI kalau nomor WhatsApp kedai berbeda.
+     Tulis format internasional tanpa tanda + dan tanpa 0 di depan:
+     08777... menjadi 62777...
+     Ubah di DUA tempat: baris <meta refresh> di bawah dan var WA.
+     ================================================================ -->
+<meta http-equiv="refresh" content="1;url=https://wa.me/6287778199518">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6B4226;--p2:#3E2419;--cream:#FAF6F1;--muted:#7A6B62}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+ font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--cream);color:#2B211C;padding:24px}
+.box{text-align:center;max-width:380px}
+.logo{width:76px;height:76px;border-radius:24px;background:linear-gradient(135deg,var(--p2),var(--p));
+ color:#fff;font-size:34px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+h1{font-size:21px;margin:0 0 6px}
+p{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 22px}
+.btn{display:block;background:#25D366;color:#fff;text-decoration:none;border-radius:16px;
+ padding:16px;font-weight:700;font-size:16px}
+.alt{display:block;margin-top:12px;color:var(--p);font-size:13px;text-decoration:none}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--p);margin:0 3px;animation:b 1.2s infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes b{0%,60%,100%{opacity:.25}30%{opacity:1}}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">D</div>
+  <h1>Menghubungkan ke WhatsApp</h1>
+  <p><span class="dot"></span><span class="dot"></span><span class="dot"></span><br>
+     Sebentar, kami bukakan chat Dhawan Coffee.</p>
+  <a class="btn" id="go" href="https://wa.me/6287778199518">Buka WhatsApp sekarang</a>
+  <a class="alt" href="https://dhawan.my.id">Lihat menu &amp; pesan online</a>
+</div>
+<script>
+var WA = "6287778199518";
+var url = "https://wa.me/" + WA;
+document.getElementById("go").href = url;
+setTimeout(function(){ location.replace(url); }, 600);
+</script>
+</body>
+</html>

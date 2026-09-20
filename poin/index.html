@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cek Poin Member - Dhawan Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6B4226;--p2:#3E2419;--cream:#FAF6F1;--muted:#7A6B62;--gold:#DDB878;--ok:#2E7D4F}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--cream);color:#2B211C}
+.wrap{max-width:460px;margin:0 auto;padding-bottom:40px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;padding:34px 24px 30px;
+ border-radius:0 0 30px 30px;text-align:center}
+.hero h1{margin:0;font-size:23px;font-weight:800}
+.hero p{margin:7px 0 0;opacity:.85;font-size:13.5px}
+.sec{padding:0 20px}
+.card{background:#fff;border-radius:20px;padding:18px;margin-top:16px;
+ box-shadow:0 2px 10px rgba(60,40,20,.06)}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px}
+input{width:100%;border:1px solid #E6DDD4;border-radius:14px;padding:14px;font:inherit;font-size:16px}
+input:focus{outline:0;border-color:var(--p)}
+.btn{width:100%;border:0;background:var(--p);color:#fff;border-radius:16px;padding:15px;
+ font:inherit;font-weight:700;font-size:16px;margin-top:12px;cursor:pointer}
+.btn:disabled{opacity:.6}
+.btn.sec{background:#fff;color:var(--p);border:1.5px solid #E6DDD4;text-decoration:none;
+ display:block;text-align:center}
+.hint{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+.res{display:none}
+.res.on{display:block}
+.who{text-align:center;padding:6px 0 14px}
+.who .av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--p2),var(--p));
+ color:#fff;font-size:26px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.who h2{margin:0;font-size:20px}
+.who small{color:var(--muted);font-size:12.5px}
+.stats{display:flex;gap:12px;margin-top:6px}
+.stat{flex:1;background:#F8F2EB;border-radius:16px;padding:14px 10px;text-align:center}
+.stat b{display:block;font-size:26px;color:var(--p);line-height:1.1}
+.stat span{font-size:11.5px;color:var(--muted);font-weight:600}
+.perk{display:flex;gap:10px;padding:9px 0;font-size:13.5px;line-height:1.45;border-bottom:1px solid #F0E8E0}
+.perk:last-child{border-bottom:0}
+.perk span{color:var(--gold)}
+h3{font-size:14px;margin:20px 0 0;padding-left:4px}
+.err{background:#FDECEA;color:#B3382C;border-radius:14px;padding:13px;font-size:13.5px;
+ margin-top:12px;display:none;line-height:1.45}
+.err.on{display:block}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:26px 20px 0}
+.foot b{color:var(--p)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>&#11088; Cek Poin Member</h1>
+    <p>Masukkan nomor WhatsApp yang kamu daftarkan</p>
+  </div>
+
+  <div class="sec">
+    <div class="card" id="form">
+      <label>Nomor WhatsApp</label>
+      <input id="ph" type="tel" inputmode="numeric" placeholder="08xxxxxxxxxx" autocomplete="tel">
+      <button class="btn" id="go">Cek sekarang</button>
+      <div class="err" id="err"></div>
+      <div class="hint">Belum jadi member? Pendaftaran gratis, cukup nama dan nomor WhatsApp.</div>
+      <a class="btn sec" href="https://dhawan.my.id" style="margin-top:10px">Daftar member gratis</a>
+    </div>
+
+    <div class="res" id="res">
+      <div class="card">
+        <div class="who">
+          <div class="av" id="av">D</div>
+          <h2 id="nm">-</h2>
+          <small>Member Dhawan Coffee</small>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="pt">0</b><span>POIN</span></div>
+          <div class="stat"><b id="vs">0</b><span>KUNJUNGAN</span></div>
+        </div>
+        <div id="tukar" style="display:none;margin-top:14px;background:#F3E9DC;border-radius:16px;padding:14px 16px">
+          <div style="font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.4px">TUKAR POIN</div>
+          <div id="tukarTeks" style="font-size:14px;line-height:1.5;margin-top:5px"></div>
+        </div>
+      </div>
+      <h3>Keuntungan yang bisa kamu pakai</h3>
+      <div class="card" id="perks"></div>
+      <a class="btn sec" href="https://dhawan.my.id" style="margin-top:12px">&#9749; Pesan sekarang</a>
+      <button class="btn sec" id="again" style="margin-top:10px;cursor:pointer">Cek nomor lain</button>
+    </div>
+  </div>
+
+  <div class="foot"><b>dhawan.my.id</b></div>
+</div>
+
+<script>
+var API = "https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
+var _c = 0;
+function jsonp(params, ok, err){
+  var cb = "__jp" + (++_c) + "_" + Date.now();
+  var s = document.createElement("script");
+  var t = setTimeout(function(){ done(); if(err) err("Sambungan lambat, coba lagi"); }, 20000);
+  function done(){ clearTimeout(t); delete window[cb]; if(s.parentNode) s.parentNode.removeChild(s); }
+  window[cb] = function(r){ done(); if(ok) ok(r); };
+  s.onerror = function(){ done(); if(err) err("Gagal terhubung"); };
+  s.src = API + "?" + params + "&callback=" + cb;
+  document.body.appendChild(s);
+}
+function esc(t){ var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+var E = document.getElementById("err");
+function showErr(m){ E.innerHTML = esc(m); E.className = "err on"; }
+function hideErr(){ E.className = "err"; }
+
+var PERKS = ["Diskon khusus member tiap transaksi", "Hadiah ulang tahun", "Harga spesial untuk acara"];
+var REDEEM = {points: 0, amount: 0};
+jsonp("info=1", function(d){
+  if(!d) return;
+  if(d.perks && d.perks.length) PERKS = d.perks;
+  if(d.redeem_points > 0 && d.redeem_amount > 0) REDEEM = {points: d.redeem_points, amount: d.redeem_amount};
+});
+function rupiah(n){ return "Rp" + Math.round(n).toLocaleString("id-ID"); }
+
+function cek(){
+  var v = document.getElementById("ph").value.replace(/\D/g, "");
+  hideErr();
+  if(v.length < 9){ showErr("Nomor WhatsApp belum lengkap. Contoh: 081234567890"); return; }
+  var b = document.getElementById("go");
+  b.disabled = true; b.textContent = "Mencari...";
+  jsonp("cek=" + encodeURIComponent(v), function(r){
+    b.disabled = false; b.textContent = "Cek sekarang";
+    if(!r || !r.ok){ showErr((r && r.reason) ? r.reason : "Data tidak ditemukan"); return; }
+    document.getElementById("nm").textContent = r.name || "Member";
+    document.getElementById("av").textContent = (r.name || "D").charAt(0).toUpperCase();
+    document.getElementById("pt").textContent = r.points || 0;
+    document.getElementById("vs").textContent = r.visits || 0;
+    // Keterangan tukar poin, kalau tokonya mengaktifkan.
+    var tk = document.getElementById("tukar");
+    if (REDEEM.points > 0) {
+      var punya = r.points || 0;
+      var bisa = Math.floor(punya / REDEEM.points);
+      var teks = REDEEM.points + " poin = potongan " + rupiah(REDEEM.amount) + ".<br>";
+      if (bisa > 0) {
+        teks += "<b>Poinmu bisa ditukar " + bisa + "x</b> = potongan " + rupiah(bisa * REDEEM.amount) +
+                ". Sebut nomor WhatsApp-mu di kasir.";
+      } else {
+        var kurang = REDEEM.points - punya;
+        teks += "Kurang <b>" + kurang + " poin</b> lagi untuk bisa ditukar.";
+      }
+      document.getElementById("tukarTeks").innerHTML = teks;
+      tk.style.display = "";
+    } else {
+      tk.style.display = "none";
+    }
+    document.getElementById("perks").innerHTML = PERKS.map(function(p){
+      return "<div class='perk'><span>&#10022;</span><div>" + esc(p) + "</div></div>"; }).join("");
+    document.getElementById("form").style.display = "none";
+    document.getElementById("res").className = "res on";
+  }, function(m){
+    b.disabled = false; b.textContent = "Cek sekarang";
+    showErr(m);
+  });
+}
+document.getElementById("go").onclick = cek;
+document.getElementById("ph").addEventListener("keydown", function(e){ if(e.key === "Enter") cek(); });
+document.getElementById("again").onclick = function(){
+  document.getElementById("res").className = "res";
+  document.getElementById("form").style.display = "";
+  document.getElementById("ph").value = "";
+  hideErr();
+};
+</script>
+</body>
+</html>
