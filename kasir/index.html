@@ -113,6 +113,45 @@ h2{font-size:clamp(25px,4.4vw,38px);font-weight:800;letter-spacing:-.8px;line-he
 .offline .t{font-weight:800;margin-top:12px;font-size:16px}
 .offline .s{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.55}
 
+/* profil pemilik */
+.prof{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px 24px;margin-top:32px;
+ box-shadow:0 10px 34px rgba(60,40,20,.07)}
+.phead{display:flex;gap:15px;align-items:center}
+.pav{width:60px;height:60px;flex:0 0 60px;border-radius:19px;
+ background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;font-size:20px;font-weight:800;
+ display:flex;align-items:center;justify-content:center;letter-spacing:.5px}
+.phead b{font-size:17px}
+.prole{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.pbody{font-size:14.3px;line-height:1.7;color:var(--muted);margin:18px 0 0}
+.pexp{margin-top:20px;border-top:1px solid #F2EBE3;padding-top:6px}
+.pitem{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid #F2EBE3}
+.pitem:last-child{border-bottom:0}
+.pic{width:36px;height:36px;flex:0 0 36px;border-radius:12px;background:#F5EDE4;font-size:17px;
+ display:flex;align-items:center;justify-content:center}
+.pitem b{display:block;font-size:14px;margin-bottom:3px}
+.pitem span{display:block;font-size:12.8px;color:var(--muted);line-height:1.6}
+.pquote{margin:18px 0 0;padding:14px 16px;background:#FBF7F2;border-left:3px solid var(--gold);
+ border-radius:0 14px 14px 0;font-size:13.5px;line-height:1.65;font-style:italic;color:var(--ink)}
+
+/* tiruan pesan Telegram */
+.tg{background:#17212B;border-radius:26px;padding:16px;box-shadow:0 10px 34px rgba(20,14,10,.25);
+ max-width:420px;margin:0 auto;width:100%}
+.tgh{display:flex;align-items:center;gap:11px;padding:2px 4px 14px;border-bottom:1px solid #223041}
+.tgav{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#B98B4E);
+ color:#3E2419;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
+.tgh b{display:block;color:#fff;font-size:14.5px}
+.tgh span{display:block;color:#7D8E9E;font-size:11.5px;margin-top:1px}
+.tgb{background:#182533;border-radius:16px;padding:14px 15px 10px;margin-top:14px}
+.tgt{color:#E7EEF5;font-size:13.5px;line-height:1.5;margin-bottom:11px}
+.tgt b{color:#fff}
+.tgl{display:flex;justify-content:space-between;gap:12px;font-size:12.8px;padding:4.5px 0;color:#A8BACB}
+.tgl b{color:#E7EEF5;font-weight:600;white-space:nowrap}
+.tgl.hi b{color:#63D48A;font-weight:800}
+.tgs{color:#7D8E9E;font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;
+ margin:12px 0 3px;padding-top:9px;border-top:1px solid #223041}
+.tgtime{text-align:right;color:#63D48A;font-size:10.5px;margin-top:9px}
+.tgnote{text-align:center;color:#7D8E9E;font-size:11px;margin:12px 0 2px}
+
 .nums{background:linear-gradient(160deg,var(--p2),var(--p));color:#fff;border-radius:30px;
  padding:44px 26px;display:grid;grid-template-columns:1fr 1fr;gap:30px 16px;text-align:center}
 @media(min-width:760px){.nums{grid-template-columns:repeat(4,1fr)}}
@@ -382,6 +421,42 @@ details p{margin:0 0 17px;color:var(--muted);font-size:13.8px;line-height:1.65}
 
     <div class="feat rev rv">
       <div class="txt">
+        <p class="label">Laporan otomatis</p>
+        <h3>Rekap harian masuk sendiri ke HP-mu</h3>
+        <p>Tidak perlu membuka aplikasi untuk tahu keadaan usahamu.
+           Setiap tutup toko, ringkasan hari itu dikirim otomatis ke Telegram:
+           omzet, modal, untung, cara bayar, dan barang terlaris.</p>
+        <ul class="mini">
+          <li>Bisa dibaca dari mana saja, tanpa membuka kasir</li>
+          <li>Berguna kalau tokomu dijaga orang lain</li>
+          <li>Riwayatnya tersimpan rapi per tanggal</li>
+        </ul>
+      </div>
+      <div class="tg">
+        <div class="tgh"><span class="tgav">R</span><div><b>Rzq Kasir</b><span>bot</span></div></div>
+        <div class="tgb">
+          <div class="tgt"><b>&#128202; Laporan Warung Maju</b><br>21/09/2026</div>
+          <div class="tgl"><span>Transaksi</span><b>48 (void: 1)</b></div>
+          <div class="tgl"><span>Omzet</span><b>Rp3.240.000</b></div>
+          <div class="tgl"><span>HPP</span><b>Rp2.106.000</b></div>
+          <div class="tgl"><span>Laba kotor</span><b>Rp1.134.000</b></div>
+          <div class="tgl"><span>Biaya operasional</span><b>Rp180.000</b></div>
+          <div class="tgl hi"><span>Laba bersih (est.)</span><b>Rp954.000</b></div>
+          <div class="tgs">Metode bayar</div>
+          <div class="tgl"><span>Tunai</span><b>Rp2.180.000</b></div>
+          <div class="tgl"><span>QRIS</span><b>Rp1.060.000</b></div>
+          <div class="tgs">Barang terlaris</div>
+          <div class="tgl"><span>Beras 5 kg</span><b>12 pcs</b></div>
+          <div class="tgl"><span>Minyak goreng 1 L</span><b>9 pcs</b></div>
+          <div class="tgl"><span>Gula pasir 1 kg</span><b>7 pcs</b></div>
+          <div class="tgtime">21.30 &#10003;&#10003;</div>
+        </div>
+        <p class="tgnote">Tampilan contoh &middot; angka bukan data sungguhan</p>
+      </div>
+    </div>
+
+    <div class="feat rv">
+      <div class="txt">
         <p class="label">Pelanggan kembali</p>
         <h3>Member, poin, dan promo yang kamu atur sendiri</h3>
         <p>Pelanggan terdaftar beserta nomor WhatsApp-nya, dan tiap belanja mengumpulkan poin.
@@ -521,6 +596,51 @@ details p{margin:0 0 17px;color:var(--muted);font-size:13.8px;line-height:1.65}
 </section>
 
 <section style="padding-top:12px">
+  <div class="wrap narrow">
+    <div class="center rv">
+      <p class="label">Siapa yang membuat</p>
+      <h2>Dibangun orang yang pernah mengurus stok sungguhan</h2>
+    </div>
+    <div class="rv prof">
+      <div class="phead">
+        <div class="pav">RM</div>
+        <div>
+          <b>Rizky Muhammad, S.T.</b>
+          <div class="prole">Sarjana Teknik Industri &middot; Pemilik Dhawan Coffe, Bandung</div>
+        </div>
+      </div>
+      <p class="pbody">Aplikasi ini bukan proyek iseng seorang programmer yang belum pernah berjualan.
+        Setiap fitur di dalamnya lahir dari persoalan yang saya hadapi sendiri, di dua sisi sekaligus:
+        sebagai praktisi yang bertahun-tahun mengurus persediaan dan sistem, dan sebagai pemilik usaha
+        yang menjaga kasir setiap hari.</p>
+      <div class="pexp">
+        <div class="pitem">
+          <span class="pic">&#128230;</span>
+          <div><b>Inventory Control</b>
+            <span>Menjaga akurasi stok, arus barang masuk dan keluar, serta stok opname
+              pada skala industri. Inilah yang membuat perhitungan stok dan modal
+              di aplikasi ini dibuat serius, bukan sekadar tempelan.</span></div>
+        </div>
+        <div class="pitem">
+          <span class="pic">&#128736;</span>
+          <div><b>Solution Design &amp; Application Engineering</b>
+            <span>Merancang dan membangun sistem untuk kebutuhan operasional nyata,
+              dari menerjemahkan masalah di lapangan menjadi alur kerja yang sederhana.</span></div>
+        </div>
+        <div class="pitem">
+          <span class="pic">&#128200;</span>
+          <div><b>Data Analysis</b>
+            <span>Mengubah catatan penjualan menjadi keputusan: produk mana yang layak
+              dipertahankan, jam mana yang perlu digarap, dan di mana untung sebenarnya bocor.</span></div>
+        </div>
+      </div>
+      <p class="pquote">&ldquo;Saya memakai aplikasi ini setiap hari di kedai saya sendiri.
+        Kalau ada yang menyusahkan, sayalah orang pertama yang merasakannya.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:12px">
   <div class="wrap">
     <div class="cta rv">
       <h2>Mau coba di usahamu?</h2>
@@ -593,5 +713,6 @@ function tab(n){
   }, 6000);
 })();
 </script>
+<script src="/nav.js" defer></script>
 </body>
 </html>
