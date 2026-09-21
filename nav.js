@@ -1,12 +1,12 @@
-/* Menu navigasi bersama untuk semua halaman dhawan.my.id.
+/* Menu navigasi bersama untuk semua halaman.
    Cukup panggil <script src="/nav.js" defer></script> di tiap halaman.
    Tombol tiga garis muncul di pojok kanan atas, isinya tautan ke semua halaman. */
 (function () {
   var HALAMAN = [
     { url: "/",        ikon: "☕", judul: "Menu & Pesan",   ket: "Lihat menu, pesan dari meja" },
     { url: "/poin",    ikon: "⭐", judul: "Cek Poin",       ket: "Sisa poin & cara menukarnya" },
-    { url: "/tentang", ikon: "📍", judul: "Tentang Kami", ket: "Alamat, jam buka, lokasi" },
-    { url: "/wa",      ikon: "💬", judul: "Chat WhatsApp", ket: "Tanya langsung ke kami" },
+    { url: "/tentang", ikon: "📍", judul: "Tentang Kami",   ket: "Alamat, jam buka, lokasi" },
+    { url: "/wa",      ikon: "💬", judul: "Chat WhatsApp",  ket: "Tanya langsung ke kami" },
     { url: "/kasir",   ikon: "📱", judul: "Aplikasi Kasir", ket: "Untuk pemilik usaha" }
   ];
 
@@ -44,6 +44,11 @@
     + ".nvf b{color:#6B4226}";
 
   function pasang() {
+    // Halaman edukasi hanya muncul kalau config.js menyalakannya (edukasi: true).
+    if (window.TOKO && TOKO.edukasi) {
+      HALAMAN.splice(1, 0, { url: "/kopi", ikon: "🌱", judul: "Belajar Kopi", ket: "Arabika, robusta, proses, sangrai" });
+    }
+
     var s = document.createElement("style");
     s.textContent = css;
     document.head.appendChild(s);

@@ -26,5 +26,8 @@ window.TOKO = {
   domain: "dhawan.my.id",
 
   // Sertifikat halal: kosongkan halalId ("") kalau belum punya, bagian halal otomatis disembunyikan
-  halalId: "ID32110077837970726"
+  halalId: "ID32110077837970726",
+
+  // Halaman "Belajar Kopi" (/kopi). true = tampil di menu navigasi.
+  edukasi: true
 };

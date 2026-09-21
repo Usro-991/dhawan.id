@@ -1,0 +1,14 @@
+/* Sentuhan Jawa modern untuk halaman kedai: motif kawung samar + ornamen emas.
+   Dipakai lewat <link rel="stylesheet" href="/jawa.css"> dan class "jawa" pada <body>. */
+html{background:#EFE5D8 url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2296%22%20height%3D%2296%22%20viewBox%3D%220%200%2096%2096%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%238C6A3F%22%20stroke-width%3D%221.1%22%20opacity%3D%220.16%22%3E%3Cellipse%20cx%3D%2248%22%20cy%3D%2224%22%20rx%3D%2211%22%20ry%3D%2220%22/%3E%3Cellipse%20cx%3D%2248%22%20cy%3D%2272%22%20rx%3D%2211%22%20ry%3D%2220%22/%3E%3Cellipse%20cx%3D%2224%22%20cy%3D%2248%22%20rx%3D%2220%22%20ry%3D%2211%22/%3E%3Cellipse%20cx%3D%2272%22%20cy%3D%2248%22%20rx%3D%2220%22%20ry%3D%2211%22/%3E%3Cellipse%20cx%3D%220%22%20cy%3D%220%22%20rx%3D%2211%22%20ry%3D%2220%22/%3E%3Cellipse%20cx%3D%2296%22%20cy%3D%220%22%20rx%3D%2211%22%20ry%3D%2220%22/%3E%3Cellipse%20cx%3D%220%22%20cy%3D%2296%22%20rx%3D%2211%22%20ry%3D%2220%22/%3E%3Cellipse%20cx%3D%2296%22%20cy%3D%2296%22%20rx%3D%2211%22%20ry%3D%2220%22/%3E%3C/g%3E%3Cg%20fill%3D%22%238C6A3F%22%20opacity%3D%220.22%22%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2248%22%20r%3D%222.2%22/%3E%3Ccircle%20cx%3D%220%22%20cy%3D%2248%22%20r%3D%221.4%22/%3E%3Ccircle%20cx%3D%2296%22%20cy%3D%2248%22%20r%3D%221.4%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%220%22%20r%3D%221.4%22/%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2296%22%20r%3D%221.4%22/%3E%3C/g%3E%3C/svg%3E") center/96px 96px}
+body.jawa{background:rgba(250,246,241,.88)}
+/* Ornamen garis emas dengan belah ketupat di tengah (dipasang pada .rule) */
+.jawa .rule{position:relative;width:120px;height:2px;background:linear-gradient(90deg,transparent,#DDB878 25%,#DDB878 75%,transparent)}
+.jawa .rule::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;transform:rotate(45deg);background:#DDB878;box-shadow:0 0 0 2px #3E2419}
+/* Judul bagian dengan garis emas pendek di kiri */
+.jawa h2{position:relative;padding-left:14px}
+.jawa h2::before{content:"";position:absolute;left:0;top:.2em;width:4px;height:1em;border-radius:2px;background:linear-gradient(180deg,#DDB878,#8C6A3F)}
+/* Kartu: tepi emas tipis di atas */
+.jawa .card{border-top:2px solid rgba(221,184,120,.55)}
+/* Bar pil promo: emas lembut */
+.jawa .pchip{background:linear-gradient(135deg,#F6EBD6,#E8CFA3);border:1px solid rgba(140,106,63,.25)}
