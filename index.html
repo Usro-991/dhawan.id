@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Dhawan Coffe</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="/config.js"></script>
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -19,6 +20,8 @@ body{margin:0 auto;max-width:920px;font-family:"Plus Jakarta Sans",system-ui,san
 .hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;padding:26px 20px 22px;border-radius:0 0 28px 28px}
 .hero h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.3px}.hero p{margin:6px 0 0;opacity:.85;font-size:13px}
 .hlogo{width:46px;height:46px;border-radius:14px;background:#fff;object-fit:contain;padding:3px;margin-bottom:10px}
+.hbadge{display:inline-flex;align-items:center;gap:5px;margin-top:9px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 10px;font-size:10.5px;font-weight:700;letter-spacing:.4px}
+.hbadge img{width:14px;height:14px;border-radius:3px;background:#fff}
 .klabel{margin-top:5px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;opacity:.7}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
 .chip{flex:0 0 auto;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid #E6DDD4;font-weight:600;font-size:13px;color:var(--txt);cursor:pointer}
@@ -60,11 +63,12 @@ label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12p
 <div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()"><div class="panel" id="panel"></div></div>
 <script>
 // Alamat backend Apps Script (endpoint data/order/member via JSONP).
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
+var SCRIPT_URL=(window.TOKO&&TOKO.apiUrl)||"https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
 
 // --- JSONP: panggil backend tanpa kena blokir CORS ---
 var _jc=0;
 function jsonp(params,onOk,onErr){
+  if(!SCRIPT_URL){if(onErr)onErr("apiUrl belum diisi di config.js");return;}
   var cb="__jp"+(++_jc)+"_"+Date.now();
   var s=document.createElement("script");
   var timer=setTimeout(function(){cleanup();if(onErr)onErr("timeout")},20000);
@@ -76,6 +80,7 @@ function jsonp(params,onOk,onErr){
   document.body.appendChild(s);
 }
 
+(function(){if(!window.TOKO)return;var T=TOKO;document.title=T.nama;document.getElementById("store").textContent=T.nama;var k=document.querySelector(".klabel");if(k)k.textContent=T.label||"";var m=document.querySelector(".member b");if(m)m.innerHTML="&#127942; Jadi Member "+T.nama.split(" ")[0];if(T.halalId){var h=document.createElement("div");h.className="hbadge";h.innerHTML="<img src='/halal.png' alt=''>BERSERTIFIKAT HALAL";var sub=document.getElementById("sub");sub.parentNode.insertBefore(h,sub);}})();
 var D={cats:[],menus:[],toppings:[],currency:"Rp "};var cart=[];var cat="all";var CUR="Rp ";var loaded=false;
 function money(v){return CUR+Math.round(v).toLocaleString("id-ID")}
 function init(d){D=d;CUR=d.currency||"Rp ";loaded=true;

@@ -10,7 +10,7 @@
      08777... menjadi 62777...
      Ubah di DUA tempat: baris <meta refresh> di bawah dan var WA.
      ================================================================ -->
-<meta http-equiv="refresh" content="1;url=https://wa.me/6281324542217">
+<script src="/config.js"></script>
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,8 @@ p{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 22px}
   <a class="alt" href="https://dhawan.my.id">Lihat menu &amp; pesan online</a>
 </div>
 <script>
-var WA = "6281324542217";
+var WA = (window.TOKO&&TOKO.waToko)||"6281324542217";
+if(window.TOKO){document.title="Chat WhatsApp - "+TOKO.nama;var p=document.querySelector("p");if(p)p.innerHTML=p.innerHTML.replace(/chat .*?\./,"chat "+TOKO.nama+".");}
 var url = "https://wa.me/" + WA;
 document.getElementById("go").href = url;
 setTimeout(function(){ location.replace(url); }, 600);

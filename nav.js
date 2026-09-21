@@ -63,8 +63,9 @@
     var path = location.pathname.replace(/\/index\.html$/, "/").replace(/\/+$/, "");
     if (path === "") path = "/";
 
-    var html = "<div class='nvlogo'><img src='/icon.png' alt=''><b>Dhawan Coffe</b>"
-             + "<span>Coffee Shop</span></div>";
+    var T = window.TOKO || {};
+    var html = "<div class='nvlogo'><img src='/icon.png' alt=''><b>" + (T.nama || "Dhawan Coffe") + "</b>"
+             + "<span>" + (T.label || "Coffee Shop") + "</span></div>";
     for (var i = 0; i < HALAMAN.length; i++) {
       var h = HALAMAN[i];
       var aktif = (h.url === "/" ? path === "/" : path === h.url);
@@ -72,7 +73,7 @@
             + "<span class='ic'>" + h.ikon + "</span>"
             + "<span><b>" + h.judul + "</b><span>" + h.ket + "</span></span></a>";
     }
-    html += "<div class='nvf'><b>dhawan.my.id</b></div>";
+    html += "<div class='nvf'><b>" + (T.domain || "dhawan.my.id") + "</b></div>";
     panel.innerHTML = html;
 
     document.body.appendChild(ov);

@@ -7,6 +7,7 @@
 <meta name="description" content="Aplikasi kasir Android untuk warung sembako, rumah makan, kedai kopi, dan toko apa pun. Tahu untung asli tiap barang, stok berkurang otomatis, laporan siap pakai. Jalan tanpa internet.">
 <meta property="og:title" content="Rzq Kasir - Kasir yang tahu untungmu">
 <meta property="og:description" content="Bukan cuma mencatat penjualan. Tahu untung asli tiap barang, stok otomatis, laporan siap pakai. Untuk usaha apa saja.">
+<script src="/config.js"></script>
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -667,7 +668,7 @@ details p{margin:0 0 17px;color:var(--muted);font-size:13.8px;line-height:1.65}
 
 <script>
 /* GANTI NOMOR DI SINI kalau perlu. Format 62..., tanpa + dan tanpa 0 di depan. */
-var WA = "6287778199518";
+var WA = (window.TOKO&&TOKO.waPenjualApp)||"6287778199518";
 var pesan = "Halo, saya tertarik dengan aplikasi Rzq Kasir. Boleh minta penjelasannya?";
 var href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(pesan);
 document.getElementById("wa1").href = href;

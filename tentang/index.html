@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tentang Dhawan Coffe</title>
 <meta name="description" content="Dhawan Coffe - kopi premium, tempat nyaman. Lihat menu, lokasi, dan jam buka.">
+<script src="/config.js"></script>
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -157,6 +158,25 @@ h2{font-size:15px;margin:26px 0 0;padding-left:4px}
           <div class="v" style="font-weight:600">Alat dicuci tiap selesai</div>
           <div class="sub">Peralatan dijaga higienis. Kopi enak berawal dari alat yang bersih.</div></div>
       </div>
+      <div class="row" id="halalrow">
+        <div class="ic" style="background:#F3E8F5;color:#6E2C7A">&#10004;</div>
+        <div><div class="k">Bersertifikat halal</div>
+          <div class="v" style="font-weight:600">Halal Indonesia &middot; BPJPH</div>
+          <div class="sub">Tersertifikasi resmi. Nomor sertifikat bisa dicek langsung di situs BPJPH.</div></div>
+      </div>
+    </div>
+
+    <h2 id="halalh">Sertifikat halal</h2>
+    <div class="card" id="halalcard">
+      <img src="/halal.png" alt="Logo Halal Indonesia" style="width:min(300px,80%);margin:4px auto 12px;display:block">
+      <div style="text-align:center;font-size:12px;color:var(--muted);letter-spacing:.3px">NOMOR SERTIFIKAT</div>
+      <div id="halalid" style="text-align:center;font-weight:700;font-size:15px;letter-spacing:.6px;margin-top:3px">ID32110077837970726</div>
+      <div style="display:flex;gap:14px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid #F0E8E0">
+        <img src="/halal-qr.png" alt="QR verifikasi sertifikat halal" style="width:96px;height:96px;flex:0 0 96px;border-radius:12px;border:1px solid #F0E8E0">
+        <div style="font-size:13px;line-height:1.55;color:#2B211C">Pindai QR ini, atau
+          <a id="halallink" href="#" target="_blank" rel="noopener" style="color:var(--p);font-weight:700">cek di situs resmi BPJPH</a>,
+          untuk memastikan sertifikat kami masih berlaku.</div>
+      </div>
     </div>
 
     <h2>Info kedai</h2>
@@ -215,9 +235,10 @@ h2{font-size:15px;margin:26px 0 0;padding-left:4px}
 </div>
 
 <script>
-var API = "https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
+var API = (window.TOKO&&TOKO.apiUrl)||"https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
 var _c = 0;
 function jsonp(params, ok, err){
+  if(!API){ if(err) err("apiUrl belum diisi di config.js"); return; }
   var cb = "__jp" + (++_c) + "_" + Date.now();
   var s = document.createElement("script");
   var t = setTimeout(function(){ done(); if(err) err("timeout"); }, 15000);
@@ -229,9 +250,19 @@ function jsonp(params, ok, err){
 }
 function esc(t){ var d=document.createElement("div"); d.textContent=t; return d.innerHTML; }
 function setMaps(){
+  var el = document.getElementById("maps");
+  if (window.TOKO && TOKO.mapsUrl) { el.href = TOKO.mapsUrl; return; }
   var q = (document.getElementById("store").textContent + " " + document.getElementById("addr").textContent);
-  document.getElementById("maps").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+  el.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
 }
+(function(){if(!window.TOKO)return;var T=TOKO;document.title="Tentang "+T.nama;document.getElementById("store").textContent=T.nama;var k=document.querySelector(".klabel");if(k)k.textContent=T.label||"";var g=document.querySelector(".tag");if(g)g.textContent=T.slogan||"";document.querySelectorAll(".foot b").forEach(function(b){b.textContent=T.domain||b.textContent});})();
+(function(){
+  var id = (window.TOKO && TOKO.halalId) || "";
+  var link = document.getElementById("halallink");
+  if (!id) { ["halalrow","halalh","halalcard"].forEach(function(i){var e=document.getElementById(i); if(e) e.style.display="none";}); return; }
+  document.getElementById("halalid").textContent = id;
+  link.href = "https://bpjph.halal.go.id/sertifikat/sertifikat?pagination[page]=1&pagination[perPage]=1000&filter[NoSertifikat]=" + encodeURIComponent(id);
+})();
 setMaps();
 jsonp("info=1", function(d){
   if(!d) return;

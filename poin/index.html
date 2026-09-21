@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cek Poin Member - Dhawan Coffe</title>
+<script src="/config.js"></script>
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -94,9 +95,11 @@ h3{font-size:14px;margin:20px 0 0;padding-left:4px}
 </div>
 
 <script>
-var API = "https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
+var API = (window.TOKO&&TOKO.apiUrl)||"https://script.google.com/macros/s/AKfycbzQzh7Bz-5XfiFqtZT0j-M7HE9qzzv0o4OrpffxXI8nsKcWimqkIAXYelJJhYprZjJk/exec";
+(function(){if(!window.TOKO)return;var T=TOKO;document.title="Cek Poin Member - "+T.nama;document.querySelectorAll("small").forEach(function(e){if(/Member Dhawan/.test(e.textContent))e.textContent="Member "+T.nama});document.querySelectorAll(".foot b").forEach(function(b){b.textContent=T.domain||b.textContent});})();
 var _c = 0;
 function jsonp(params, ok, err){
+  if(!API){ if(err) err("apiUrl belum diisi di config.js"); return; }
   var cb = "__jp" + (++_c) + "_" + Date.now();
   var s = document.createElement("script");
   var t = setTimeout(function(){ done(); if(err) err("Sambungan lambat, coba lagi"); }, 20000);
