@@ -36,12 +36,12 @@ window.TOKO = {
   hero: {
     judul1: "Roso Ningrat.",          // baris 1 judul besar (putih)
     judul2: "Rego Rakyat.",           // baris 2 judul besar (emas)
-    teks:   "Rasa bangsawan, harga rakyat. Espresso premium, single origin Puntang, cokelat dan matcha — diracik dengan takaran yang dikunci, disajikan untuk siapa saja yang lewat.",
+    teks:   "Espresso premium, single origin Puntang, cokelat, dan matcha — diracik dengan takaran presisi dan standar yang biasanya hanya kamu temui di kedai mahal. Untuk kamu yang tahu rasa, dan pantas mendapatkannya.",
     cincin: "SINGLE ORIGIN PUNTANG • HALAL • ROSO NINGRAT REGO RAKYAT • "  // tulisan melingkar di foto
   },
   cerita: {
     judul: "Rasa bangsawan,\n*harga rakyat.*",   // *teks* = warna emas, \n = baris baru
-    teks:  "Secangkir dengan mutu yang biasanya hanya ditemui di kedai mahal, tapi tetap bisa dibeli siapa saja yang lewat. Itu yang kami pegang sejak hari pertama.",
+    teks:  "Kami tidak bersaing di harga. Kami bersaing di cangkir: biji grade 1, resep yang dijaga, dan pelayanan yang membuatmu bangga membawa gelas Dhawan ke mana pun.",
     teks2: "Karena itu setiap menu kami bernama gelar Jawa: Ningrat, Keraton, Adipati, Senopati, Panglima, Permaisuri. Bukan sekadar nama — pengingat bahwa siapa pun yang duduk di sini berhak diperlakukan istimewa. Dan nama kami ditulis *Coffe*, satu ‘e’, disengaja: satu ‘e’ untuk satu esensi."
   },
   // Empat kartu keunggulan di samping cerita
