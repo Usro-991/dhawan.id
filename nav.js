@@ -27,6 +27,12 @@
     + "font-family:'Plus Jakarta Sans',system-ui,sans-serif}"
     + ".nvp.on{transform:none}"
     + ".nvp h4{margin:0 0 4px;font-size:11px;letter-spacing:1.2px;color:#7A6B62;text-transform:uppercase;padding-left:4px}"
+    + ".nvlogo{text-align:center;padding:0 0 16px;margin-bottom:6px;border-bottom:1px solid #E9E0D6}"
+    + ".nvlogo img{width:58px;height:58px;border-radius:17px;background:#fff;object-fit:contain;"
+    + "padding:3px;margin:0 auto 9px;display:block;border:1px solid #E9E0D6}"
+    + ".nvlogo b{display:block;font-size:15px;color:#2B211C}"
+    + ".nvlogo span{display:block;font-size:9.5px;letter-spacing:2.6px;text-transform:uppercase;"
+    + "color:#7A6B62;margin-top:4px;font-weight:700}"
     + ".nvp a{display:flex;gap:13px;align-items:center;text-decoration:none;color:#2B211C;"
     + "background:#fff;border:1px solid #E9E0D6;border-radius:16px;padding:13px 14px;margin-top:9px}"
     + ".nvp a.now{border-color:#6B4226;background:#F6EDE4}"
@@ -57,7 +63,8 @@
     var path = location.pathname.replace(/\/index\.html$/, "/").replace(/\/+$/, "");
     if (path === "") path = "/";
 
-    var html = "<h4>Dhawan Coffe</h4>";
+    var html = "<div class='nvlogo'><img src='/icon.png' alt=''><b>Dhawan Coffe</b>"
+             + "<span>Coffee Shop</span></div>";
     for (var i = 0; i < HALAMAN.length; i++) {
       var h = HALAMAN[i];
       var aktif = (h.url === "/" ? path === "/" : path === h.url);

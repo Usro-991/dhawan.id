@@ -7,6 +7,8 @@
 <meta name="description" content="Aplikasi kasir Android untuk warung sembako, rumah makan, kedai kopi, dan toko apa pun. Tahu untung asli tiap barang, stok berkurang otomatis, laporan siap pakai. Jalan tanpa internet.">
 <meta property="og:title" content="Rzq Kasir - Kasir yang tahu untungmu">
 <meta property="og:description" content="Bukan cuma mencatat penjualan. Tahu untung asli tiap barang, stok otomatis, laporan siap pakai. Untuk usaha apa saja.">
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -129,7 +131,9 @@ h2{font-size:clamp(25px,4.4vw,38px);font-weight:800;letter-spacing:-.8px;line-he
 .pic{width:36px;height:36px;flex:0 0 36px;border-radius:12px;background:#F5EDE4;font-size:17px;
  display:flex;align-items:center;justify-content:center}
 .pitem b{display:block;font-size:14px;margin-bottom:3px}
-.pitem span{display:block;font-size:12.8px;color:var(--muted);line-height:1.6}
+/* Hanya teks keterangan di dalam div, JANGAN kena .pic —
+   kalau kena, kotak ikonnya kehilangan display:flex dan isinya lari ke pojok. */
+.pitem div span{display:block;font-size:12.8px;color:var(--muted);line-height:1.6}
 .pquote{margin:18px 0 0;padding:14px 16px;background:#FBF7F2;border-left:3px solid var(--gold);
  border-radius:0 14px 14px 0;font-size:13.5px;line-height:1.65;font-style:italic;color:var(--ink)}
 
@@ -140,7 +144,8 @@ h2{font-size:clamp(25px,4.4vw,38px);font-weight:800;letter-spacing:-.8px;line-he
 .tgav{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#B98B4E);
  color:#3E2419;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
 .tgh b{display:block;color:#fff;font-size:14.5px}
-.tgh span{display:block;color:#7D8E9E;font-size:11.5px;margin-top:1px}
+/* Sama seperti di atas: jangan kena .tgav, supaya huruf di dalamnya tetap di tengah. */
+.tgh div span{display:block;color:#7D8E9E;font-size:11.5px;margin-top:1px}
 .tgb{background:#182533;border-radius:16px;padding:14px 15px 10px;margin-top:14px}
 .tgt{color:#E7EEF5;font-size:13.5px;line-height:1.5;margin-bottom:11px}
 .tgt b{color:#fff}

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tentang Dhawan Coffe</title>
 <meta name="description" content="Dhawan Coffe - kopi premium, tempat nyaman. Lihat menu, lokasi, dan jam buka.">
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--p:#6B4226;--p2:#3E2419;--cream:#FAF6F1;--muted:#7A6B62;--gold:#DDB878}
@@ -13,8 +15,8 @@ body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:va
 .wrap{max-width:520px;margin:0 auto}
 .hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;padding:38px 24px 32px;
  border-radius:0 0 30px 30px;text-align:center}
-.logo{width:72px;height:72px;border-radius:22px;background:rgba(255,255,255,.14);
- font-size:32px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.logo{width:82px;height:82px;border-radius:24px;background:#fff;object-fit:contain;
+ padding:5px;margin:0 auto 14px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
 .hero h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.3px}
 .hero .tag{margin:8px 0 0;opacity:.85;font-size:13.5px}
 .rule{width:64px;height:4px;border-radius:2px;background:var(--gold);margin:16px auto 0}
@@ -44,6 +46,7 @@ h2{font-size:15px;margin:26px 0 0;padding-left:4px}
 .ebig{display:block;font-size:34px;font-weight:800;letter-spacing:6px;color:var(--p);line-height:1.1}
 .esmall{display:block;font-size:11.5px;color:var(--muted);margin-top:9px;font-weight:600;letter-spacing:.4px}
 .nameblock{text-align:center;padding:6px 0 16px;margin-bottom:14px;border-bottom:1px solid #F0E8E0}
+.nmlogo{width:min(200px,62%);margin:0 auto 6px;display:block}
 .nm{font-size:30px;font-weight:800;letter-spacing:-.6px;color:var(--p);line-height:1.1}
 .nmean{font-size:12.5px;color:var(--muted);margin-top:7px;font-weight:600;letter-spacing:.3px}
 .story{margin:0 0 10px;font-size:14px;line-height:1.7;color:#2B211C}
@@ -62,7 +65,7 @@ h2{font-size:15px;margin:26px 0 0;padding-left:4px}
 <body>
 <div class="wrap">
   <div class="hero">
-    <div class="logo">D</div>
+    <img class="logo" src="/icon.png" alt="Logo Dhawan Coffe">
     <h1 id="store">Dhawan Coffe</h1>
     <div class="klabel">Coffee Shop</div>
     <p class="tag">Roso Ningrat, Rego Rakyat</p>
@@ -74,7 +77,7 @@ h2{font-size:15px;margin:26px 0 0;padding-left:4px}
     <h2>Arti nama kami</h2>
     <div class="card">
       <div class="nameblock">
-        <div class="nm">Dhawan</div>
+        <img class="nmlogo" src="/logo.png" alt="Logo Dhawan Coffe">
         <div class="nmean">mengalir &middot; pembawa pesan &middot; pejuang</div>
       </div>
       <p class="story">Nama ini kami pilih karena tiga maknanya bertemu di satu titik:

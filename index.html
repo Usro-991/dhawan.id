@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Dhawan Coffe</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--p:#6B4226;--p2:#3E2419;--cream:#FAF6F1;--card:#fff;--txt:#2B211C;--muted:#7A6B62;--accent:#DDB878;--ok:#2E7D4F}
@@ -16,6 +18,7 @@ body{margin:0 auto;max-width:920px;font-family:"Plus Jakarta Sans",system-ui,san
  background:var(--cream);color:var(--txt);box-shadow:0 0 40px rgba(60,40,20,.08);min-height:100vh}
 .hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;padding:26px 20px 22px;border-radius:0 0 28px 28px}
 .hero h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.3px}.hero p{margin:6px 0 0;opacity:.85;font-size:13px}
+.hlogo{width:46px;height:46px;border-radius:14px;background:#fff;object-fit:contain;padding:3px;margin-bottom:10px}
 .klabel{margin-top:5px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;opacity:.7}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:14px 16px 4px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
 .chip{flex:0 0 auto;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid #E6DDD4;font-weight:600;font-size:13px;color:var(--txt);cursor:pointer}
@@ -47,7 +50,7 @@ label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12p
 </style>
 </head>
 <body>
-<div class="hero"><h1 id="store">Dhawan Coffe</h1><div class="klabel">Coffee Shop</div><p id="sub">Memuat menu...</p></div>
+<div class="hero"><img class="hlogo" src="/icon.png" alt=""><h1 id="store">Dhawan Coffe</h1><div class="klabel">Coffee Shop</div><p id="sub">Memuat menu...</p></div>
 <div class="promo" id="promo"></div>
 <div class="member"><div><b>&#127942; Jadi Member Dhawan</b><p>Diskon tiap hari + hadiah ulang tahun</p></div><button onclick="openMember()">Daftar</button></div>
 <div class="search">&#128269;<input id="q" placeholder="Cari menu..." oninput="render()"></div>
