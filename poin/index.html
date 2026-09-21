@@ -165,6 +165,8 @@ function cek(){
   });
 }
 document.getElementById("go").onclick = cek;
+// Dari QR kartu member: /poin?hp=08xxx langsung dicek tanpa mengetik.
+(function(){ var m = location.search.match(/[?&]hp=(\d+)/); if (m) { document.getElementById("ph").value = m[1]; cek(); } })();
 document.getElementById("ph").addEventListener("keydown", function(e){ if(e.key === "Enter") cek(); });
 document.getElementById("again").onclick = function(){
   document.getElementById("res").className = "res";
